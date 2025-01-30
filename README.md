@@ -45,9 +45,16 @@ lib/test/evaluation/local.py  # paths about testing
 
 ```
 python tracking/train.py \
---script emt --config baseline \
+--script emtrack --config baseline \
 --save_dir ./output \
 --mode multiple --nproc_per_node 4 \
 --use_wandb 1
 ```
 
+## Test and Evaluation
+
+- RSEOT
+```
+python tracking/test.py emtrack baseline --dataset rseot --runid 300 --threads 8 --num_gpus 2
+python tracking/analysis_results.py # need to modify tracker configs and names
+```
