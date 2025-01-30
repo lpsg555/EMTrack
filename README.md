@@ -21,17 +21,33 @@ conda activate emtrack
 bash install.sh
 ```
 
-3.   For more detailed installation steps, please refer to [RTDETR](https://github.com/lyuwenyu/RT-DETR)
 
 
-# Demo
-1. We have put our model checkpoints here [ESVT: Goole Drive](https://drive.google.com/drive/folders/1CONoYjxOX9gsal1bxnj3PmixEKsv3p3L?hl=zh-cn)
+### :star2: Strong Performance
 
-2. Please download weights and organize them as following:
-weights
+<p align="center">
+  <img width="85%" src="fig/comparison.png" alt="Comparison"/>
+</p>
 
-&emsp;  └── ESVT/
 
-&emsp;&emsp;&emsp;&emsp;&emsp; └── ESVT-sbfpn-6xd.pth
+## Set project paths
+Run the following command to set paths for this project
+```
+python tracking/create_default_local_file.py --workspace_dir . --data_dir ./data --save_dir ./output
+```
+After running this command, you can also modify paths by editing these two files
+```
+lib/train/admin/local.py  # paths about training
+lib/test/evaluation/local.py  # paths about testing
+```
 
-4.  Run train.py and the results in outputs.
+## Training
+
+```
+python tracking/train.py \
+--script emt --config baseline \
+--save_dir ./output \
+--mode multiple --nproc_per_node 4 \
+--use_wandb 1
+```
+
